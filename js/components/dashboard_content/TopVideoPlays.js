@@ -38,48 +38,73 @@ function TopVideoPlays({
         const data = await DataLoader.loadJSON(dataURL);
         await setVideoPlayData(data);
       } else {
-        const chartBuilder = new ChartBuilder();
-        await chartBuilder
-          .setElement(ref.current)
-          .setData(videoPlayData)
-          .setTransformer((d) => d.data.slice(0, numberOfListingsToDisplay))
-          .setRenderer((selection) => {
-            const barchartRenderer = barChart()
-              .label((d) => d.video_title)
-              .value((d) => +d.total_events)
-              .scale((values) =>
-                d3.scale
-                  .linear()
-                  .domain([0, 1, d3.max(values)])
-                  .rangeRound([0, 1, 100]),
-              )
-              .format(formatters.addCommas);
-
-            barchartRenderer(selection);
-
-            // turn the labels into links
-            selection
-              .selectAll(".label")
-              .each(function (d) {
-                d.text = this.innerText;
-              })
-              .html("")
-              .append("a")
-              .attr("target", "_blank")
-              .attr("rel", "noopener")
-              .attr("href", (d) => exceptions[d.video_url] || d.video_url)
-              .text((d) => titleExceptions[d.video_title] || d.video_title);
-          })
-          .build();
+        if (__shouldDisplayVideoPlays()) {
+          await __createVideoPlayChart();
+        }
       }
     };
     initVideoPlaysChart().catch(console.error);
   }, [videoPlayData]);
 
+  function __shouldDisplayVideoPlays() {
+    return (
+      videoPlayData &&
+      videoPlayData.data &&
+      Array.isArray(videoPlayData.data) &&
+      videoPlayData.data.length > 2
+    );
+  }
+
+  async function __createVideoPlayChart() {
+    const chartBuilder = new ChartBuilder();
+    await chartBuilder
+      .setElement(ref.current)
+      .setData(videoPlayData)
+      .setTransformer((d) => d.data.slice(0, numberOfListingsToDisplay))
+      .setRenderer((selection) => {
+        const barchartRenderer = barChart()
+          .label((d) => d.video_title)
+          .value((d) => +d.total_events)
+          .scale((values) =>
+            d3.scale
+              .linear()
+              .domain([0, 1, d3.max(values)])
+              .rangeRound([0, 1, 100]),
+          )
+          .format(formatters.addCommas);
+
+        barchartRenderer(selection);
+
+        // turn the labels into links
+        selection
+          .selectAll(".label")
+          .each(function (d) {
+            d.text = this.innerText;
+          })
+          .html("")
+          .append("a")
+          .attr("target", "_blank")
+          .attr("rel", "noopener")
+          .attr("href", (d) => exceptions[d.video_url] || d.video_url)
+          .text((d) => titleExceptions[d.video_title] || d.video_title);
+      })
+      .build();
+  }
+
   return (
-    <figure className="top-video-plays__bar-chart" ref={ref}>
-      <div className="data bar-chart"></div>
-    </figure>
+    <>
+      {__shouldDisplayVideoPlays() ? (
+        <figure className="top-video-plays__bar-chart" ref={ref}>
+          <div className="data bar-chart"></div>
+        </figure>
+      ) : (
+        <div>
+          <strong>
+            <em>Video play data is unavailable</em>
+          </strong>
+        </div>
+      )}
+    </>
   );
 }
 

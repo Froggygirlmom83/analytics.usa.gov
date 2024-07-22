@@ -11,7 +11,7 @@ export default function barChart() {
   };
 
   let value = function (d) {
-    return d.value;
+    return d.value.toFixed(1);
   };
 
   let format = String;

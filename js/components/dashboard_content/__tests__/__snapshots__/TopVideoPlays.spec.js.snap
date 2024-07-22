@@ -255,24 +255,24 @@ exports[`TopVideoPlays when data is loaded renders a component with data loaded 
 
 exports[`TopVideoPlays when data is not loaded renders a component in loading state 1`] = `
 <DocumentFragment>
-  <figure
-    class="top-video-plays__bar-chart"
-  >
-    <div
-      class="data bar-chart"
-    />
-  </figure>
+  <div>
+    <strong>
+      <em>
+        Video play data is unavailable
+      </em>
+    </strong>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`TopVideoPlays when data loading has an error renders a component in error state 1`] = `
 <DocumentFragment>
-  <figure
-    class="top-video-plays__bar-chart"
-  >
-    <div
-      class="data bar-chart"
-    />
-  </figure>
+  <div>
+    <strong>
+      <em>
+        Video play data is unavailable
+      </em>
+    </strong>
+  </div>
 </DocumentFragment>
 `;

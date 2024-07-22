@@ -139,13 +139,13 @@ exports[`SidebarContent when 7 days tab is selected renders a component with top
               Total videos played over the last week on Department of Interior hostnames.
             </em>
           </h4>
-          <figure
-            class="top-video-plays__bar-chart"
-          >
-            <div
-              class="data bar-chart"
-            />
-          </figure>
+          <div>
+            <strong>
+              <em>
+                Video play data is unavailable
+              </em>
+            </strong>
+          </div>
         </section>
       </div>
       <div
@@ -310,13 +310,13 @@ exports[`SidebarContent when 30 days tab is selected renders a component with to
               Total videos played over the last month on Department of Interior hostnames.
             </em>
           </h4>
-          <figure
-            class="top-video-plays__bar-chart"
-          >
-            <div
-              class="data bar-chart"
-            />
-          </figure>
+          <div>
+            <strong>
+              <em>
+                Video play data is unavailable
+              </em>
+            </strong>
+          </div>
         </section>
       </div>
     </div>
@@ -459,13 +459,13 @@ exports[`SidebarContent when 30 minutes tab is selected renders a component with
               Total videos played yesterday on Department of Interior hostnames.
             </em>
           </h4>
-          <figure
-            class="top-video-plays__bar-chart"
-          >
-            <div
-              class="data bar-chart"
-            />
-          </figure>
+          <div>
+            <strong>
+              <em>
+                Video play data is unavailable
+              </em>
+            </strong>
+          </div>
         </section>
       </div>
       <div

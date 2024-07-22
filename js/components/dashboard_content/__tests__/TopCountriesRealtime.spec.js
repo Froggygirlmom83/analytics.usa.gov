@@ -52,7 +52,7 @@ describe("TopCountriesRealtime", () => {
           },
           {
             country: "Canada",
-            active_visitors: "8507",
+            active_visitors: "10002",
           },
           {
             country: "United Kingdom",
