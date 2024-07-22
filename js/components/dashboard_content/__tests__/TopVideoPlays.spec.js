@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 
+import { delay } from "../../../../spec/support/test_utilities";
 import DataLoader from "../../../lib/data_loader";
 import TopVideoPlays from "../TopVideoPlays";
 
@@ -194,6 +195,9 @@ describe("TopVideoPlays", () => {
           name: "NASA Astronauts Send Fourth of July Wishes From the International Space Station",
         }),
       );
+      // Wait for barchart transition animation to complete (200 ms, set in
+      // js/lib/chart_helpers/barchart.js)
+      await delay(300);
     });
 
     it("renders a component with data loaded", () => {

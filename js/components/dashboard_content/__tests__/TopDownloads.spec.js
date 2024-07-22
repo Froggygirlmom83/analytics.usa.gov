@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 
+import { delay } from "../../../../spec/support/test_utilities";
 import DataLoader from "../../../lib/data_loader";
 import TopDownloads from "../TopDownloads";
 
@@ -130,6 +131,9 @@ describe("TopDownloads", () => {
         />,
       );
       await waitFor(() => screen.getByText("Passport Fees"));
+      // Wait for barchart transition animation to complete (200 ms, set in
+      // js/lib/chart_helpers/barchart.js)
+      await delay(300);
     });
 
     it("renders a component with data loaded", () => {
