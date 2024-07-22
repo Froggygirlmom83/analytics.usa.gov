@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
+import Config from "../../lib/config";
 import TopDownloads from "./TopDownloads";
 import TopPagesRealtime from "./TopPagesRealtime";
 import TopPagesHistorical from "./TopPagesHistorical";
@@ -69,7 +70,7 @@ function SidebarContent({ dataHrefBase, agency }) {
               dataHrefBase={dataHrefBase}
               reportFileName="top-pages-realtime.json"
               numberOfListingsToDisplay={numberOfTopPagesToDisplay}
-              refreshSeconds={15}
+              refreshSeconds={Config.realtimeDataRefreshSeconds}
             />
           </section>
           <section className="top-downloads">
